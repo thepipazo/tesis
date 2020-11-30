@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.tesis.entidad.Ambito;
 import com.tesis.implement.AmbitoImplement;
-import com.tesis.implement.CriterioImplement;
 
 @RestController
 @RequestMapping("ambito")
@@ -24,8 +23,7 @@ public class AmbitoControlador {
 	@Autowired
 	private AmbitoImplement ai;
 
-	@Autowired
-	private CriterioImplement ci;
+	
 	
 	@PostMapping("/guardar")
 	public ResponseEntity<Ambito> guardarUser(@RequestBody Ambito ambito) {
