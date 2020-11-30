@@ -12,12 +12,21 @@ public class Criterio {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	private Long id;
 	private Long codigo;
 	private String nombre;
 	private String descripcion;
 	
 	public Criterio() {
 		
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public Long getCodigo() {
@@ -43,8 +52,8 @@ public class Criterio {
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
-	
-	
+
+
 
 	
 }

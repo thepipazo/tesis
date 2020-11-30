@@ -13,7 +13,7 @@ public class Ambito {
 	@Id 
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Long id;
-	private String descripcion;
+	private String nombre_ambito;
 	
 	public Ambito() {
 		
@@ -27,13 +27,16 @@ public class Ambito {
 		this.id = id;
 	}
 
-	public String getDescripcion() {
-		return descripcion;
+	public String getNombre_ambito() {
+		return nombre_ambito;
 	}
 
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
+	public void setNombre_ambito(String nombre_ambito) {
+		this.nombre_ambito = nombre_ambito;
 	}
+
+
+	
 
 	
 	
