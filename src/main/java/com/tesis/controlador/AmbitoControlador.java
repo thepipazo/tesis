@@ -1,7 +1,6 @@
 package com.tesis.controlador;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,21 +13,25 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.tesis.entidad.Criterio;
+import com.tesis.entidad.Ambito;
+import com.tesis.implement.AmbitoImplement;
 import com.tesis.implement.CriterioImplement;
 
 @RestController
-@RequestMapping("criterio")
-public class CriterioControlador {
+@RequestMapping("ambito")
+public class AmbitoControlador {
+
+	@Autowired
+	private AmbitoImplement ai;
 
 	@Autowired
 	private CriterioImplement ci;
-
+	
 	@PostMapping("/guardar")
-	public ResponseEntity<Criterio> guardarUser(@RequestBody Criterio criterio) {
+	public ResponseEntity<Ambito> guardarUser(@RequestBody Ambito ambito) {
 		try {
-			ci.GuardarCriterio(criterio);
-			return new ResponseEntity<Criterio>(HttpStatus.CREATED);
+			ai.GuardarAmbito(ambito);
+			return new ResponseEntity<Ambito>(HttpStatus.CREATED);
 		} catch (Exception e) {
 
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -37,18 +40,21 @@ public class CriterioControlador {
 	}
 
 	@GetMapping("/list")
-	public ResponseEntity<List> ListarCriterios() {
+	public ResponseEntity<List> ListarAmbito() {
 		try {
-			return ResponseEntity.ok(ci.ListarCriterios());
+			return ResponseEntity.ok(ai.ListarAmbitos());
+			
 		} catch (Exception e) {
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
 
+
+	
 	@GetMapping("list/{id}")
-	public ResponseEntity<Criterio> CriterioPorId(@PathVariable Long id) {
+	public ResponseEntity<Ambito> AmbitoPorId(@PathVariable Long id) {
 		try {
-			return ResponseEntity.ok(ci.ListarCriterioPorId(id));
+			return ResponseEntity.ok(ai.ListarAmbitoPorId(id));
 		} catch (Exception e) {
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
@@ -57,8 +63,8 @@ public class CriterioControlador {
 	@DeleteMapping("delete/{id}")
 	private ResponseEntity<Boolean> EliminarCriterio(@PathVariable("id") Long id) {
 		try {
-			if (ci.ListarCriterioPorId(id) != null) {
-				ci.EliminarCriterio(id);
+			if (ai.ListarAmbitoPorId(id) != null) {
+				ai.EliminarAmbito(id);
 				return ResponseEntity.ok(true);
 			} else {
 				return ResponseEntity.ok(false);
@@ -69,5 +75,4 @@ public class CriterioControlador {
 
 		// return ResponseEntity.ok(!(ci.ListarCriterioPorId(id)!= null));
 	}
-
 }

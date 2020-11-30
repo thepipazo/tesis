@@ -15,7 +15,7 @@ public class Ambito {
 	private Long id;
 	private String descripcion;
 	
-	public Ambito(Long id, String descripcion) {
+	public Ambito() {
 		
 	}
 

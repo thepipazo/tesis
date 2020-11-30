@@ -2,38 +2,37 @@ package com.tesis.implement;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.tesis.entidad.Ambito;
+import com.tesis.repositorio.AmbitoRepositorio;
 import com.tesis.services.AmbitoServicio;
 
 @Service
 public class AmbitoImplement implements AmbitoServicio {
 
-	
+	@Autowired
+	private AmbitoRepositorio ambitorepositorio;
 	
 	@Override
-	public void GuardarAmbito(Ambito criterio) {
-		// TODO Auto-generated method stub
-		
+	public void GuardarAmbito(Ambito ambito) {
+		ambitorepositorio.save(ambito);
 	}
 
 	@Override
 	public List<Ambito> ListarAmbitos() {
-		// TODO Auto-generated method stub
-		return null;
+		return ambitorepositorio.findAll();
 	}
 
 	@Override
 	public Ambito ListarAmbitoPorId(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+		return ambitorepositorio.findById(id).orElse(null);
 	}
 
 	@Override
 	public void EliminarAmbito(Long id) {
-		// TODO Auto-generated method stub
-		
+		ambitorepositorio.deleteById(id);
 	}
 
 }
