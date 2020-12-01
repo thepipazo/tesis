@@ -6,10 +6,10 @@ import org.springframework.stereotype.Service;
 
 import com.tesis.entidad.Proceso;
 import com.tesis.repositorio.ProcesoRepositorio;
-import com.tesis.services.ProcesoServices;
+import com.tesis.services.ProcesoServicio;
 
 @Service
-public  class ProcesoImplement implements ProcesoServices {
+public  class ProcesoImplement implements ProcesoServicio {
 
 	@Autowired
 	private ProcesoRepositorio procesorepositorio;
