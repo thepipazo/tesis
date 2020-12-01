@@ -31,7 +31,6 @@ public class ProcesoControlador {
 			pi.GuardarProceso(proceso);
 			return new ResponseEntity<Proceso>(HttpStatus.CREATED);
 		} catch (DataIntegrityViolationException e) {
-
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
