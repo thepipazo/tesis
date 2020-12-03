@@ -21,13 +21,14 @@ public class Usuario {
 	@Column(name = "rut",nullable = false, unique = true)
 	private String rut;
 	private String nombre;
+	private String apellido;
 	private String email;
 	private String password;
 	
 	@ManyToOne
 	@JoinColumn(name="id_rol")
 	private Rol rol;
-	private String foto;
+	
 	
 	@ManyToOne
 	@JoinColumn(name="id_unidad")
@@ -90,13 +91,6 @@ public class Usuario {
 		this.rol = rol;
 	}
 
-	public String getFoto() {
-		return foto;
-	}
-
-	public void setFoto(String foto) {
-		this.foto = foto;
-	}
 
 	public Unidad getUnidad() {
 		return unidad;

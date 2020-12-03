@@ -1,9 +1,14 @@
 package com.tesis.entidad;
 
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -15,6 +20,7 @@ public class Permiso {
 	private Long id;
 	private String nombre_permiso;
 	private String descripcion_permiso;
+	
 	
 	public Permiso() {
 	}
