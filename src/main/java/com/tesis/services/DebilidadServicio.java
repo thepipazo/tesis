@@ -1,0 +1,12 @@
+package com.tesis.services;
+import java.util.List;
+import com.tesis.entidad.Debilidad;
+
+public interface DebilidadServicio {
+
+	public Debilidad GuardarDebilidad(Debilidad debilidad);
+	public List<Debilidad>ListarDebilidads();
+	public Debilidad ListarDebilidadPorId(Long id);
+	public void EliminarDebilidad(Long id);
+	
+}

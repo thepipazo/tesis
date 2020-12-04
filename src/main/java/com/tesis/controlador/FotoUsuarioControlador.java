@@ -3,6 +3,8 @@ package com.tesis.controlador;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,7 +14,7 @@ import com.tesis.entidad.FotoUsuario;
 import com.tesis.services.FotoUsuarioServicio;
 
 @RestController
-@RequestMapping(name = "foto")
+@RequestMapping("foto")
 public class FotoUsuarioControlador {
 	
 	@Autowired
@@ -27,6 +29,16 @@ public class FotoUsuarioControlador {
 		} catch (Exception e) {
 			return new ResponseEntity<FotoUsuario>(HttpStatus.INTERNAL_SERVER_ERROR);
  		}
+	}
+	
+	@GetMapping("list/{id}")
+	public ResponseEntity<FotoUsuario> buscarfoto(@PathVariable Long id){
+		try {
+			return  ResponseEntity.ok(fs.buscarFoto(id));
+		} catch (Exception e) {
+			return new ResponseEntity<FotoUsuario>(HttpStatus.INTERNAL_SERVER_ERROR);
+
+		}
 	}
 	
 
