@@ -1,7 +1,6 @@
 package com.tesis.services;
 
 import java.util.List;
-
 import com.tesis.entidad.Permiso;
 
 public interface PermisoServicio {
