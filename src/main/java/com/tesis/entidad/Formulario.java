@@ -1,9 +1,14 @@
 package com.tesis.entidad;
 
+import java.util.Set;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -73,6 +78,18 @@ public class Formulario {
 	
 	@ManyToOne
 	private Proceso proceso;
+	
+	@ManyToMany
+	@JoinTable( name = "formulario_criterio", 
+			  joinColumns = @JoinColumn(name = "formulario"), 
+			  inverseJoinColumns = @JoinColumn(name = "criterio"))
+	private Set<Criterio>criterio; 
+	
+	@ManyToMany
+	@JoinTable( name = "formulario_archivo", 
+			  joinColumns = @JoinColumn(name = "formulario"), 
+			  inverseJoinColumns = @JoinColumn(name = "archivo"))
+	private Set<Archivo>archivo; 
 
 	
 	
