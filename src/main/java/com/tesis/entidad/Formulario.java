@@ -12,6 +12,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.tesis.security.entity.Usuario;
+
 @Entity
 @Table(name = "formularios")
 public class Formulario {

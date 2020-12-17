@@ -2,6 +2,8 @@ package com.tesis.implement;
 
 import java.util.List;
 
+import javax.validation.ConstraintValidatorContext;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -33,5 +35,15 @@ public class UnidadImplements implements UnidadServicio {
 	public void EliminarUnidad(Long id) {
 		unidadrepositorio.deleteById(id);
 	}
+
+	@Override
+	public List<Unidad> ListarUnidadPorEstado(Boolean estado) {
+		return unidadrepositorio.findByEstado(estado);
+	}
+
+
+	
+
+	
 
 }

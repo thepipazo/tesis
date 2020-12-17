@@ -1,14 +1,16 @@
-package com.tesis.services;
-
-import java.util.List;
-
-import com.tesis.entidad.Rol;
-
-public interface RolServicio {
-	
-	public Rol GuardarRol(Rol Rol);
-	public List<Rol>ListarRols();
-	public Rol ListarRolPorId(Long id);
-	public void EliminarRol(Long id);
-
-}
+/*
+ * package com.tesis.services;
+ * 
+ * import java.util.List;
+ * 
+ * import com.tesis.entidad.Role; import com.tesis.entidad.User;
+ * 
+ * public interface RolServicio {
+ * 
+ * public Role GuardarRol(Role Rol); public List<Role>ListarRols(); public Role
+ * ListarRolPorId(Long id); public void EliminarRol(Long id); public Role
+ * BuscarPorNombre(String id);
+ * 
+ * 
+ * }
+ */

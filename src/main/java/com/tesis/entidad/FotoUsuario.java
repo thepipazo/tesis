@@ -7,6 +7,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.tesis.security.entity.Usuario;
+
 @Entity
 @Table(name = "fotos_usuarios")
 public class FotoUsuario {
