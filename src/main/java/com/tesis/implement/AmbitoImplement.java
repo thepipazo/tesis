@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.tesis.entidad.Ambito;
+import com.tesis.entidad.AmbitoGrafico;
 import com.tesis.repositorio.AmbitoRepositorio;
 import com.tesis.services.AmbitoServicio;
 
@@ -33,6 +34,11 @@ public class AmbitoImplement implements AmbitoServicio {
 	@Override
 	public void EliminarAmbito(Long id) {
 		ambitorepositorio.deleteById(id);
+	}
+
+	@Override
+	public Ambito buscarPorNombre(String nombre) {
+		return ambitorepositorio.findByNombreAmbito(nombre);
 	}
 
 }

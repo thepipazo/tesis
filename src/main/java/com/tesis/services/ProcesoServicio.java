@@ -10,4 +10,5 @@ public interface ProcesoServicio {
 	public List<Proceso>ListarProcesos();
 	public Proceso ListarProcesoPorId(Long id);
 	public void EliminarProceso(Long id);
+	public Proceso buscarProcesoPoCodigo(String codigo);
 }

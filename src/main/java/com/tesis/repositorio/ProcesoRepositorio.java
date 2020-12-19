@@ -5,4 +5,6 @@ import com.tesis.entidad.Proceso;
 
 public interface ProcesoRepositorio extends JpaRepository<Proceso, Long>{
 
+	public Proceso findByCodigo(String codigo);
+	
 }

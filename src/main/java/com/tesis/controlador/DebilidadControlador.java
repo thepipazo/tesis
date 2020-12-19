@@ -1,37 +1,54 @@
 package com.tesis.controlador;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.tesis.entidad.Debilidad;
+import com.tesis.entidad.Debilidad;
 import com.tesis.implement.DebilidadImplement;
+import com.tesis.services.DebilidadServicio;
 
 @RestController
 @RequestMapping("debilidad")
 public class DebilidadControlador {
 
 	@Autowired
-	private DebilidadImplement di;
+	private DebilidadServicio di;
 
 	@PostMapping("/guardar")
-	public ResponseEntity<Debilidad> guardarUser(@RequestBody Debilidad criterio) {
+	public ResponseEntity<?> guardarUser(@RequestBody Debilidad debilidad) {
+		Map<String, Object> response = new HashMap<>();
+
 		try {
-			di.GuardarDebilidad(criterio);
-			return new ResponseEntity<Debilidad>(HttpStatus.CREATED);
+				if(di.buscarDebilidadPorCodigo(debilidad.getCodigo())== null) {
+			
+			di.GuardarDebilidad(debilidad);
+			response.put("mensaje", "Creado exitosamente" );
+			return new ResponseEntity<Map<String, Object>>(response, HttpStatus.CREATED);
+				}else {
+					response.put("mensaje", "Error: El codigo ya esta en uso");
+					return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);	
+				}
 		} catch (Exception e) {
 
-			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-		}
+			response.put("mensaje", "Error al ingresar");
+			return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);			}
 
 	}
 
@@ -66,6 +83,34 @@ public class DebilidadControlador {
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 
+	}
+	
+	
+	
+
+	@PutMapping("/editar")
+	public ResponseEntity<?> editarDebilidad(@Valid @RequestBody Debilidad debilidad,  BindingResult bindingResult ) {
+		Map<String, Object> response = new HashMap<>();
+		
+		
+		try {
+
+			if (di.ListarDebilidadPorId(debilidad.getId()) == null) {
+				response.put("mensaje", "La unidad  no existe");
+				return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+			} else {
+				
+					di.GuardarDebilidad(debilidad);
+
+					response.put("mensaje", "Actualizado Con Exito");
+					response.put("rol", debilidad);
+					return new ResponseEntity<Map<String, Object>>(response, HttpStatus.CREATED);
+				
+			}
+		} catch (Exception e) {
+			response.put("mensaje", "Error al Actualizar");
+			return new ResponseEntity<>(response.toString(), HttpStatus.INTERNAL_SERVER_ERROR);
+		}
 	}
 
 }

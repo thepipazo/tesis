@@ -34,4 +34,9 @@ public class DebilidadImplement implements DebilidadServicio {
 		debilidadrepositorio.deleteById(id);
 	}
 
+	@Override
+	public Debilidad buscarDebilidadPorCodigo(String codigo) {
+		return debilidadrepositorio.findByCodigo(codigo);
+	}
+
 }

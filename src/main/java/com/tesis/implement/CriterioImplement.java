@@ -30,6 +30,14 @@ public class CriterioImplement implements CriterioServicio {
 	public void EliminarCriterio(Long id) {
 		criteriorepositorio.deleteById(id);		
 	}
+	@Override
+	public Criterio buscarCriterioPorCodigo(String codigo) {
+		return criteriorepositorio.findByCodigo(codigo);
+	}
+	@Override
+	public List<Criterio> buscarCriterioPorEstado(Boolean estado) {
+		return criteriorepositorio.findByEstado(estado);
+	}
 	
 	
 

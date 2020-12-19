@@ -35,4 +35,9 @@ public class RegistroImplement implements RegistroServicio{
 		registrorepositorio.deleteById(id);
 	}
 
+	@Override
+	public Registro buscarRegistroPorNombre(String nombre) {
+		return registrorepositorio.findByTipoRegistro(nombre);
+	}
+
 }

@@ -34,4 +34,9 @@ public  class ProcesoImplement implements ProcesoServicio {
 		procesorepositorio.deleteById(id);
 	}
 
+	@Override
+	public Proceso buscarProcesoPoCodigo(String codigo) {
+		return procesorepositorio.findByCodigo(codigo);
+	}
+
 }

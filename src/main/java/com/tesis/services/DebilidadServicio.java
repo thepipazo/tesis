@@ -8,5 +8,6 @@ public interface DebilidadServicio {
 	public List<Debilidad>ListarDebilidads();
 	public Debilidad ListarDebilidadPorId(Long id);
 	public void EliminarDebilidad(Long id);
+	public Debilidad buscarDebilidadPorCodigo(String codigo);
 	
 }

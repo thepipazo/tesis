@@ -110,16 +110,16 @@ public class AuthController {
 	@PostMapping("/login")
 	public ResponseEntity<JwtDto> login(@Valid @RequestBody LoginUsuario loginUsuario, BindingResult bindingResult) {
 		
-		if (usuarioService.validaEmail(loginUsuario.getNombreUsuario())) {
+		if (usuarioService.validaEmail(loginUsuario.getNombreUsuario().trim())) {
 
-			if (usuarioService.getByNombreUsuario(loginUsuario.getNombreUsuario()) != null) {
+			if (usuarioService.getByNombreUsuario(loginUsuario.getNombreUsuario().trim()) != null) {
 
 				if (bindingResult.hasErrors())
 					return new ResponseEntity(new Mensaje("campos mal puestos o nombre"), HttpStatus.BAD_REQUEST);
 
 				Authentication authentication = authenticationManager
-						.authenticate(new UsernamePasswordAuthenticationToken(loginUsuario.getNombreUsuario(),
-								loginUsuario.getPassword()));
+						.authenticate(new UsernamePasswordAuthenticationToken(loginUsuario.getNombreUsuario().trim(),
+								loginUsuario.getPassword().trim()));
 				SecurityContextHolder.getContext().setAuthentication(authentication);
 				String jwt = jwtProvider.generateToken(authentication);
 

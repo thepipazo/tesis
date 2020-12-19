@@ -10,4 +10,5 @@ public interface RegistroServicio {
 	public List<Registro>ListarRegistros();
 	public Registro ListarRegistroPorId(Long id);
 	public void EliminarRegistro(Long id);
+	public Registro buscarRegistroPorNombre(String nombre);
 }

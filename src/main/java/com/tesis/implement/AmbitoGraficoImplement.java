@@ -35,4 +35,9 @@ public class AmbitoGraficoImplement implements AmbitoGraficoServicio {
 		ambitogrficorepositorio.deleteById(id);
 	}
 
+	@Override
+	public AmbitoGrafico buscarPorNombre(String nombre) {
+		return ambitogrficorepositorio.findByNombreAmbito(nombre);
+	}
+
 }

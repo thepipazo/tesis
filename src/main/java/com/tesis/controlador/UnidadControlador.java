@@ -75,10 +75,10 @@ public class UnidadControlador {
 		}
 	}
 	
-	@GetMapping("/listUnidadEstadoTrue")
-	public ResponseEntity<List> listarUnidadEstadoTrue(){
+	@GetMapping("/listUnidadEstado/{estado}")
+	public ResponseEntity<List> listarUnidadEstado(@PathVariable Boolean estado){
 		try {
-			return  ResponseEntity.ok(us.ListarUnidadPorEstado(true));
+			return  ResponseEntity.ok(us.ListarUnidadPorEstado(estado));
 		} catch (Exception e) {
 			return new ResponseEntity<List>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}

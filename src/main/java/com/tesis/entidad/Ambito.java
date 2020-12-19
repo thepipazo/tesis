@@ -1,10 +1,12 @@
 package com.tesis.entidad;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "ambitos")
@@ -13,7 +15,14 @@ public class Ambito {
 	@Id 
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Long id;
-	private String nombre_ambito;
+	
+	@NotNull
+	@Column(unique = true)
+	private String nombreAmbito;
+	
+	@NotNull	
+	private Boolean estado;
+	
 	
 	public Ambito() {
 		
@@ -27,12 +36,21 @@ public class Ambito {
 		this.id = id;
 	}
 
-	public String getNombre_ambito() {
-		return nombre_ambito;
+
+	public String getNombreAmbito() {
+		return nombreAmbito;
 	}
 
-	public void setNombre_ambito(String nombre_ambito) {
-		this.nombre_ambito = nombre_ambito;
+	public void setNombreAmbito(String nombreAmbito) {
+		this.nombreAmbito = nombreAmbito;
+	}
+
+	public Boolean getEstado() {
+		return estado;
+	}
+
+	public void setEstado(Boolean estado) {
+		this.estado = estado;
 	}
 
 

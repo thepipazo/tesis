@@ -10,4 +10,6 @@ public interface CriterioServicio {
 	public List<Criterio>ListarCriterios();
 	public Criterio ListarCriterioPorId(Long id);
 	public void EliminarCriterio(Long id);
+	public Criterio buscarCriterioPorCodigo(String criterio);
+	public List<Criterio> buscarCriterioPorEstado(Boolean estado);
 }
