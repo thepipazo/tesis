@@ -63,6 +63,15 @@ public class AmbitoControlador {
 		}
 	}
 
+	@GetMapping("/listPorEstado/{estado}")
+	public ResponseEntity<List>listarAmbitoPorEstado(@PathVariable Boolean estado){
+		try {
+			return new ResponseEntity<List>(ai.buscarPorEstado(estado),HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+	
 
 	
 	@GetMapping("list/{id}")

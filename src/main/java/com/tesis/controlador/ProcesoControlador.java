@@ -73,6 +73,15 @@ public class ProcesoControlador {
 		}
 	}
 	
+	@GetMapping("/listPorEstado/{estado}")
+	public ResponseEntity<List>listarProcesoPorEstado(@PathVariable Boolean estado){
+		try {
+			return new ResponseEntity<List>(ps.buscarProcesoPorEstado(estado),HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+	
 	@DeleteMapping("/delete/{id}")
 	public HttpStatus eliminarProceso(@PathVariable Long id){
 		try {

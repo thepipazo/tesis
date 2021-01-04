@@ -38,13 +38,12 @@ public class UnidadControlador {
 	public ResponseEntity<?> guardarUnidad(@RequestBody Unidad unidad) {
 		Map<String, Object> response = new HashMap<>();
 		Unidad uni = null;
-		uni =  ur.findByCodigo(unidad.getCodigo());
 		
 	
 		
 		try {
 			
-			if(uni == null) {
+			if(ur.findByCodigo(unidad.getCodigo())== null) {
 				uni = new Unidad(unidad.getId(),unidad.getCodigo(),unidad.getNombre(),unidad.getEstado());
 				
 				
@@ -55,9 +54,7 @@ public class UnidadControlador {
 			}else {
 				response.put("mensaje", "Error: El codigo ya esta en uso");
 				return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);	
-			}
-			
-			
+			}			
 			
 			
 		} catch (Exception e) {
@@ -115,14 +112,14 @@ public class UnidadControlador {
 	public ResponseEntity<?> editarUnidad(@Valid @RequestBody Unidad unidad,  BindingResult bindingResult ) {
 		Map<String, Object> response = new HashMap<>();
 		
-		Unidad uni = us.ListarUnidadPorId(unidad.getId());
 		
 		try {
 
-			if (uni == null) {
+			if (us.ListarUnidadPorId(unidad.getId()) == null) {
 				response.put("mensaje", "La unidad  no existe");
 				return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
 			} else {
+				
 				
 					us.GuardarUnidad(unidad);
 
@@ -130,10 +127,15 @@ public class UnidadControlador {
 					response.put("rol", unidad);
 					return new ResponseEntity<Map<String, Object>>(response, HttpStatus.CREATED);
 				
+				
 			}
 		} catch (Exception e) {
+			if(ur.findByCodigo(unidad.getCodigo()) != null && ur.findByCodigo(unidad.getCodigo()).getId() != unidad.getId()) {
+				response.put("mensaje", "El codigo ya esta en uso");
+				return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+			}else
 			response.put("mensaje", "Error al Actualizar");
-			return new ResponseEntity<>(response.toString(), HttpStatus.INTERNAL_SERVER_ERROR);
+			return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
 

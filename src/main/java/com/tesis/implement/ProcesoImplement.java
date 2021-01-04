@@ -39,4 +39,9 @@ public  class ProcesoImplement implements ProcesoServicio {
 		return procesorepositorio.findByCodigo(codigo);
 	}
 
+	@Override
+	public List<Proceso> buscarProcesoPorEstado(Boolean estado) {
+		return procesorepositorio.findByEstado(estado);
+	}
+
 }

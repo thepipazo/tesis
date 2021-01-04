@@ -55,6 +55,10 @@ public class Usuario {
 	public Usuario() {
 	}
 
+	public Usuario(Integer id) {
+		this.id = id;
+	}
+
 
 	public Usuario(Integer id,String rut, @NotNull String nombre, @NotNull String apellido, @NotNull String nombreUsuario,
 			@NotNull String password ,@NotNull Unidad unidad) {

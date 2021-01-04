@@ -12,4 +12,5 @@ public interface AmbitoServicio {
 	public Ambito ListarAmbitoPorId(Long id);
 	public void EliminarAmbito(Long id);
 	public Ambito buscarPorNombre(String nombre);
+	public List<Ambito> buscarPorEstado(Boolean estado);
 }

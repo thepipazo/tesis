@@ -41,4 +41,9 @@ public class AmbitoImplement implements AmbitoServicio {
 		return ambitorepositorio.findByNombreAmbito(nombre);
 	}
 
+	@Override
+	public List<Ambito> buscarPorEstado(Boolean estado) {
+		return ambitorepositorio.findByEstado(estado);
+	}
+
 }

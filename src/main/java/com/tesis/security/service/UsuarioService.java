@@ -46,6 +46,14 @@ public class UsuarioService {
 		return usuarioRepository.findByNombreUsuario(nombreUsuario).get().getRut();
 	}
 	
+	public Optional<Usuario> ByPorNombreUsuario(String nombreUsuario){
+		return usuarioRepository.findByNombreUsuario(nombreUsuario);
+	}
+	
+	public Usuario ByPorRut(String rut){
+		return usuarioRepository.findByRut(rut);
+	}
+	
 	public static Boolean validaEmail (String email) {
 		Pattern pattern = Pattern.compile("^([0-9a-zA-Z]+[-._+&])*[0-9a-zA-Z]+@([-0-9a-zA-Z]+[.])+[a-zA-Z]{2,6}$");
 		Matcher matcher = pattern.matcher(email);

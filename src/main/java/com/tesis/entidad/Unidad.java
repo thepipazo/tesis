@@ -34,7 +34,10 @@ public class Unidad {
 	public Unidad() {
 	}
 
-	
+	public Unidad(Long id) {
+		this.id = id;
+	}
+
 
 	public Unidad(Long id, @NotNull String codigo, @NotNull String nombre ,@NotNull Boolean estado) {
 		this.id = id;

@@ -12,7 +12,7 @@ public interface AmbitoGraficoServicio {
 	public AmbitoGrafico ListarAmbitoGraficoPorId(Long id);
 	public void EliminarAmbitoGrafico(Long id);
 	public AmbitoGrafico buscarPorNombre(String nombre);
+	public List<AmbitoGrafico>ListarAmbitoGraficosPorEstado(Boolean estado);
 
-	
 	
 }

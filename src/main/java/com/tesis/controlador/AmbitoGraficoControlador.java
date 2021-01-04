@@ -56,6 +56,15 @@ public class AmbitoGraficoControlador {
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
+	
+	@GetMapping("/listPorEstado/{estado}")
+	public ResponseEntity<List>listarAmbitoPorEstado(@PathVariable Boolean estado){
+		try {
+			return new ResponseEntity<List>(ags.ListarAmbitoGraficosPorEstado(estado),HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
 
 	@GetMapping("/list/{id}")
 	public ResponseEntity<AmbitoGrafico> listarGraficoPorId(@PathVariable Long id) {

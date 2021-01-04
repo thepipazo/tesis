@@ -40,4 +40,9 @@ public class AmbitoGraficoImplement implements AmbitoGraficoServicio {
 		return ambitogrficorepositorio.findByNombreAmbito(nombre);
 	}
 
+	@Override
+	public List<AmbitoGrafico> ListarAmbitoGraficosPorEstado(Boolean estado) {
+		return ambitogrficorepositorio.findByEstado(estado);
+	}
+
 }

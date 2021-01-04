@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.tesis.entidad.Criterio;
 import com.tesis.entidad.Debilidad;
 import com.tesis.entidad.Debilidad;
 import com.tesis.implement.DebilidadImplement;
@@ -60,8 +61,17 @@ public class DebilidadControlador {
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
+	
+	@GetMapping("/listPorCriterio/{id}")
+	public ResponseEntity<List>listarAmbitoPorCriterio(@PathVariable Long id){
+		try {
+			return new ResponseEntity<List>(di.ListarDebilidadesPorCriterio(id),HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
 
-	@GetMapping("list/{id}")
+	@GetMapping("/list/{id}")
 	public ResponseEntity<Debilidad> DebilidadPorId(@PathVariable Long id) {
 		try {
 			return ResponseEntity.ok(di.ListarDebilidadPorId(id));

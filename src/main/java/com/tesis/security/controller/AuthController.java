@@ -86,6 +86,7 @@ public class AuthController {
                         passwordEncoder.encode(nuevoUsuario.getPassword()),nuevoUsuario.getUnidad());
         
         Set<Rol> roles = new HashSet<>();
+        if(nuevoUsuario.getRoles().contains("ROLE_USER")) 
         roles.add(rolService.getByRolNombre(RolNombre.ROLE_USER).get());
         if(nuevoUsuario.getRoles().contains("ROLE_ADMIN")) 
             roles.add(rolService.getByRolNombre(RolNombre.ROLE_ADMIN).get());
@@ -147,6 +148,29 @@ public class AuthController {
 		}
 	}
 	
+	
+	@GetMapping("/buscarLogeado/{email}")
+	public ResponseEntity<?> buscarLogeado(@PathVariable String email){
+		
+		try {
+			return  ResponseEntity.ok(usuarioService.getByNombreUsuario(email));
+		} catch (Exception e) {
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+	
+	@GetMapping("/buscarPorRut/{rut}")
+	public ResponseEntity<Usuario> buscarPorRut(@PathVariable String rut){
+		
+		try {
+			return  ResponseEntity.ok(usuarioService.ByPorRut(rut));
+		} catch (Exception e) {
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+	
+	
+	
 	@GetMapping("/listRol")
 	public ResponseEntity<List> listarRol(){
 		try {
@@ -171,7 +195,8 @@ public class AuthController {
 			                        nuevoUsuario.getPassword(),nuevoUsuario.getUnidad());
 					
 					 Set<Rol> roles = new HashSet<>();
-				        roles.add(rolService.getByRolNombre(RolNombre.ROLE_USER).get());
+					 if(nuevoUsuario.getRoles().contains("ROLE_USER")) 
+					        roles.add(rolService.getByRolNombre(RolNombre.ROLE_USER).get());
 				        if(nuevoUsuario.getRoles().contains("ROLE_ADMIN")) 
 				            roles.add(rolService.getByRolNombre(RolNombre.ROLE_ADMIN).get());
 					

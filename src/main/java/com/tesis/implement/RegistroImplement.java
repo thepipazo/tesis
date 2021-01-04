@@ -40,4 +40,9 @@ public class RegistroImplement implements RegistroServicio{
 		return registrorepositorio.findByTipoRegistro(nombre);
 	}
 
+	@Override
+	public List<Registro> buscarRegistroPorEstado(Boolean estado) {
+		return registrorepositorio.findByEstado(estado);
+	}
+
 }
